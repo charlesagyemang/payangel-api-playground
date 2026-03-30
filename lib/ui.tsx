@@ -79,8 +79,8 @@ export function KeyStatus() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
-  const hasPub = keys.publicKey.length > 0;
-  const hasSec = keys.secretKey.length > 0;
+  const hasPub = (keys.publicKey || "").length > 0;
+  const hasSec = (keys.secretKey || "").length > 0;
   return (
     <div style={{ ...cardStyle, padding: 12, marginBottom: 16, fontSize: 12, color: "#888" }}>
       <strong>Loaded Keys:</strong>{" "}
