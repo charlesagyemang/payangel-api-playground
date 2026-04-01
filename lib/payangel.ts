@@ -8,10 +8,12 @@ export function getClient(publicKey?: string, secretKey?: string, env?: string):
   const environment = (env || process.env.PAYANGEL_ENV || "sandbox") as "sandbox" | "production";
 
   if (!client || publicKey || secretKey) {
+    const baseURL = process.env.PAYANGEL_BASE_URL;
     client = new PayAngel({
       publicKey: pk,
       secretKey: sk,
       env: environment,
+      ...(baseURL ? { baseURL } : {}),
     });
   }
   return client;
